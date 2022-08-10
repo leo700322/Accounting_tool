@@ -1,14 +1,22 @@
 # 2D list
 
-# 讀取檔案
+import os # operating system
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue # 這次迴圈下面的程式碼跳過，從上面再重新執行一次。
-        name, price = line.strip().split(',')
-        products.append([name, price])
-print(products)
+
+# 讀取檔案
+if os.path.isfile('products.csv'): # 檢查檔案在不在
+    print('Yeah! Found it!')
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue # 這次迴圈下面的程式碼跳過，從上面再重新執行一次。
+            name, price = line.strip().split(',')
+            products.append([name, price])
+    print(products)
+
+else:
+    print('Can not found it!')
 
 # 讓使用者輸入
 while True:
